@@ -191,11 +191,10 @@ def get_cwe_weakness(ids: str) -> Dict[str, Any]:
                 "errors": errors
             }
         return {"Weaknesses": weaknesses}
-    else:
-        return {
-            "errors": errors,
-            "status_code": 404 if any(e.get("status_code") == 404 for e in errors) else 500
-        }
+    return {
+        "errors": errors,
+        "status_code": 404 if any(e.get("status_code") == 404 for e in errors) else 500
+    }
 
 @mcp.tool()
 def get_cwe_category(ids: str) -> Dict[str, Any]:
@@ -256,11 +255,10 @@ def get_cwe_category(ids: str) -> Dict[str, Any]:
                 "errors": errors
             }
         return {"Categories": categories}
-    else:
-        return {
-            "errors": errors,
-            "status_code": 404 if any(e.get("status_code") == 404 for e in errors) else 500
-        }
+    return {
+        "errors": errors,
+        "status_code": 404 if any(e.get("status_code") == 404 for e in errors) else 500
+    }
 
 @mcp.tool()
 def get_cwe_view(ids: str) -> Dict[str, Any]:
@@ -321,11 +319,10 @@ def get_cwe_view(ids: str) -> Dict[str, Any]:
                 "errors": errors
             }
         return {"Views": views}
-    else:
-        return {
-            "errors": errors,
-            "status_code": 404 if any(e.get("status_code") == 404 for e in errors) else 500
-        }
+    return {
+        "errors": errors,
+        "status_code": 404 if any(e.get("status_code") == 404 for e in errors) else 500
+    }
 
 @mcp.tool()
 def get_cwe_parents(cwe_id: str, view: Optional[str] = None) -> Dict[str, Any]:
@@ -366,13 +363,12 @@ def get_cwe_parents(cwe_id: str, view: Optional[str] = None) -> Dict[str, Any]:
     # Handle successful response
     if isinstance(response, list):
         return {"Parents": response}
-    else:
-        return {
-            "error": "Unexpected API response format",
-            "status_code": 500,
-            "cwe_id": clean_id,
-            "details": f"Expected array but got {type(response).__name__}"
-        }
+    return {
+        "error": "Unexpected API response format",
+        "status_code": 500,
+        "cwe_id": clean_id,
+        "details": f"Expected array but got {type(response).__name__}"
+    }
 
 @mcp.tool()
 def get_cwe_descendants(cwe_id: str, view: Optional[str] = None) -> Dict[str, Any]:
@@ -414,13 +410,12 @@ def get_cwe_descendants(cwe_id: str, view: Optional[str] = None) -> Dict[str, An
     # Handle successful response
     if "Descendants" in response:
         return response
-    else:
-        return {
-            "error": "Unexpected API response format - missing 'Descendants' key",
-            "status_code": 500,
-            "cwe_id": clean_id,
-            "api_response": response
-        }
+    return {
+        "error": "Unexpected API response format - missing 'Descendants' key",
+        "status_code": 500,
+        "cwe_id": clean_id,
+        "api_response": response
+    }
 
 @mcp.tool()
 def get_cwe_children(cwe_id: str, view: Optional[str] = None) -> Dict[str, Any]:
@@ -462,13 +457,12 @@ def get_cwe_children(cwe_id: str, view: Optional[str] = None) -> Dict[str, Any]:
     # Handle successful response
     if isinstance(response, list):
         return {"Children": response}
-    else:
-        return {
-            "error": "Unexpected API response format - expected array",
-            "status_code": 500,
-            "cwe_id": clean_id,
-            "api_response": response
-        }
+    return {
+        "error": "Unexpected API response format - expected array",
+        "status_code": 500,
+        "cwe_id": clean_id,
+        "api_response": response
+    }
 
 @mcp.tool()
 def get_cwe_ancestors(cwe_id: str,
@@ -515,12 +509,11 @@ def get_cwe_ancestors(cwe_id: str,
     # Handle successful response
     if "Ancestors" in response:
         return response
-    else:
-        return {
-            "error": "Unexpected API response format - missing 'Ancestors' key",
-            "status_code": 500,
-            "cwe_id": clean_id,
-            "api_response": response
+    return {
+        "error": "Unexpected API response format - missing 'Ancestors' key",
+        "status_code": 500,
+        "cwe_id": clean_id,
+        "api_response": response
         }
 
 def main():
