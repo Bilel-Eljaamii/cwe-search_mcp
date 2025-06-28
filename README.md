@@ -100,6 +100,31 @@ Created client transport
 
 ![assets/img/demoMCPdev.png](assets/img/demoMCPdev.png)
 
+### MCP Client Integration
+To integrate the CWE Search Service with your MCP client:
+
+1. Locate Configuration: Open your MCP client configuration file
+
+2. Update Path: Set CWE_SEARCH_SERVICE_PATH to the absolute path of your local installation directory
+
+3. Add to your mcp client configuration file, modify the 3.`"CWE_SEARCH_SERVICE_PATH"` as you self dir.
+
+```json
+"cwe-search_mcp": {
+  "autoApprove": [],
+  "disabled": false,
+  "timeout": 60,
+  "type": "stdio",
+  "command": "uv",
+  "args": [
+    "--directory",
+    "CWE_SEARCH_SERVICE_PATH",
+    "run",
+    "main.py"
+  ]
+}
+```
+
 Example API calls using Python:
 
 ```python
