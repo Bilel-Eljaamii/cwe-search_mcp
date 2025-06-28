@@ -1,0 +1,14 @@
+[project]
+name = "cwe-search-mcp"
+version = "0.1.0"
+description = """
+            A Python-based interface to MITRE's Common Weakness Enumeration (CWE) database via
+            the official API, enabling seamless vulnerability research and integration with
+            MCP-compatible systems.
+            """
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.10.1",
+    "requests>=2.32.4",
+]
