@@ -12,7 +12,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/bileleljaamii/)
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/Bilel-Eljaamii)
 
-
 ## Overview
 
 The CWE Search MCP provides a robust Python implementation for interacting with MITRE's Common Weakness Enumeration (CWE) database through its official API. Designed for security researchers, developers, and vulnerability analysts, this mcp enables efficient querying of vulnerability information and integrates seamlessly with MCP-compatible systems using stdio transport.
@@ -85,7 +84,9 @@ Run the mcp as a standalone module:
 ```bash
 DANGEROUSLY_OMIT_AUTH=true mcp dev main.py
 ```
+
 Output:
+
 ``` js
 [06/28/25 12:46:09] INFO     Starting cwe-search_mcp
 Starting MCP inspector...
@@ -101,6 +102,7 @@ Created client transport
 ![assets/img/demoMCPdev.png](assets/img/demoMCPdev.png)
 
 ### MCP Client Integration
+
 To integrate the CWE Search Service with your MCP client:
 
 1. Locate Configuration: Open your MCP client configuration file
@@ -125,57 +127,13 @@ To integrate the CWE Search Service with your MCP client:
 }
 ```
 
-Example API calls using Python:
+#### AnythingLLM
 
-```python
-from cwe_search import get_cwe_info, search_cwe_by_keyword
+![assets/img/AnythingLLM_integraton.png](assets/img/AnythingLLM_integraton.png)
 
-# Get CWE-79 details
-cwe_79 = get_cwe_info("79")
+#### Cline / VSCode
 
-# Get multiple CWEs
-multiple_cwes = get_cwe_info("79,89,CWE-125")
-
-# Search for SQL-related vulnerabilities
-sql_vulns = search_cwe_by_keyword("SQL injection", max_results=10)
-
-# Get vulnerability ancestors
-ancestors = get_cwe_ancestors("89", view="1000")
-```
-
-### MCP Integration
-
-The mcp uses stdio transport for seamless integration with MCP-compatible systems:
-
-1. **Start the mcp**:
-
-   ```bash
-   python main.py
-   ```
-
-2. **Send MCP-formatted requests** via stdin
-
-Example MCP request:
-
-```json
-{
-  "function": "get_cwe_info",
-  "params": {"ids": "79,89"},
-  "id": "request-123"
-}
-```
-
-Example MCP response:
-
-```json
-{
-  "result": {
-    "79": { /* CWE-79 data */ },
-    "89": { /* CWE-89 data */ }
-  },
-  "id": "request-123"
-}
-```
+![assets/img/Cline_integraton.png](assets/img/Cline_integraton.png)
 
 ### Key Notes
 
